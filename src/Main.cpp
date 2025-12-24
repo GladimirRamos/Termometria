@@ -32,14 +32,14 @@
 // Sensor MODBUS CWT-TH04 - Slave ID 01...
 
 #define Slave_ID_EXT             32 // sensor 4x1
-#define Slave_ID_01               1 // sensor 1
-#define Slave_ID_02               2 // sensor 2
+#define Slave_ID_01               5 // sensor 1
+#define Slave_ID_02               6 // sensor 2
 #define Slave_ID_03               3 // sensor 3
 #define Slave_ID_04               4 // sensor 4...
 
 #define BLYNK_TEMPLATE_ID        "TMPL2x5zWdfN7"
 #define BLYNK_TEMPLATE_NAME      "Temometria Silos"
-#define BLYNK_FIRMWARE_VERSION   "0.2.1"
+#define BLYNK_FIRMWARE_VERSION   "0.2.2"
 //#define BLYNK_PRINT Serial
 //#define BLYNK_DEBUG   
 //#define APP_DEBUG
@@ -895,7 +895,7 @@ void setup(){
 
   edgentTimer.setInterval(  1000L, Main2);                     // rotina se repete a cada XXXXL (milisegundos)
   edgentTimer.setInterval(  5000L, timerButtonAPP);            // timer para receber os comandos do APP
-  edgentTimer.setInterval(300000L, MODBUS_Sensor);             // lê sensores MODBUS a cada XXXXL (milisegundos)
+  edgentTimer.setInterval(180000L, MODBUS_Sensor);             // lê sensores MODBUS a cada XXXXL (milisegundos) 300000L
   BlynkEdgent.begin();
   delay(100);
   Serial.println("--------------------------- SETUP Concluido ---------------------------");
