@@ -32,14 +32,14 @@
 // Sensor MODBUS CWT-TH04 - Slave ID 01...
 
 #define Slave_ID_EXT             32 // sensor 4x1
-#define Slave_ID_01               5 // sensor 1
-#define Slave_ID_02               6 // sensor 2
+#define Slave_ID_01               6 // sensor 1
+#define Slave_ID_02               5 // sensor 2
 #define Slave_ID_03               3 // sensor 3
 #define Slave_ID_04               4 // sensor 4...
 
 #define BLYNK_TEMPLATE_ID        "TMPL2x5zWdfN7"
 #define BLYNK_TEMPLATE_NAME      "Temometria Silos"
-#define BLYNK_FIRMWARE_VERSION   "0.2.2"
+#define BLYNK_FIRMWARE_VERSION   "0.2.5"
 //#define BLYNK_PRINT Serial
 //#define BLYNK_DEBUG   
 //#define APP_DEBUG
@@ -486,6 +486,7 @@ void Main2(){
 }
 
 void MODBUS_Sensor(){
+  Blynk.virtualWrite(V4, 255);                        // liga LED de sinalização no app
   /*
   // SENSOR EXTERNO 4x1 = ExtSensor4x1
   uint8_t resultEXT = ExtSensor.readHoldingRegisters( 0, 2 );
@@ -523,7 +524,9 @@ void MODBUS_Sensor(){
   // Gera os alarmes de push e no display no app - Blynk
   if (result_01 != 0) {Blynk.virtualWrite(V1, currentDay, "/", currentMonth, " ", currentHour, ":", currentMin, " FALHA NO SENSOR 01");
                      Blynk.logEvent("falha_de_sensor");
-                     Blynk.virtualWrite(V10, 255);        // envia 255 para o led de sinalização
+                     //Blynk.virtualWrite(V10, 255);        // envia 255 para o led de sinalização
+                     //#D3435C - Blynk RED 
+                     Blynk.setProperty(V10, "color", "#D03A20");
                      }
                      
   if (result_01 == Sensor_01.ku8MBSuccess){
@@ -535,7 +538,9 @@ void MODBUS_Sensor(){
     //Serial.print("Média Umidade 01:    "); Serial.print(average_Umi_01); Serial.println(" %");
     Serial.print("Temperatura 01:      "); Serial.print(Temp_01); Serial.println(" C");
 
-    Blynk.virtualWrite(V10, 0);                          // envia 0 para o led de sinalização
+    //Blynk.virtualWrite(V10, 0);                          // envia 0 para o led de sinalização
+    //#23C48E - Blynk Green 
+    Blynk.setProperty(V10, "color", "#64C366");
     Blynk.virtualWrite(V11, Umi_01);                     // Envia ao Blynk a informação
     Blynk.virtualWrite(V12, Temp_01);
     //Blynk.virtualWrite(V2, Umi_01);                    // V2 é do contador de RESET's - REMOVER PÓS TESTES
@@ -549,7 +554,9 @@ void MODBUS_Sensor(){
   // Gera os alarmes de push e no display no app - Blynk
   if (result_02 != 0) {Blynk.virtualWrite(V1, currentDay, "/", currentMonth, " ", currentHour, ":", currentMin, " FALHA NO SENSOR 02");
                      Blynk.logEvent("falha_de_sensor");
-                     Blynk.virtualWrite(V15, 255);        // envia 255 para o led de sinalização
+                     //Blynk.virtualWrite(V15, 255);        // envia 255 para o led de sinalização
+                     //#D3435C - Blynk RED 
+                     Blynk.setProperty(V15, "color", "#D03A20");
                      }
                      
   if (result_02 == Sensor_02.ku8MBSuccess){
@@ -561,7 +568,9 @@ void MODBUS_Sensor(){
     //Serial.print("Média Umidade 02:    "); Serial.print(average_Umi_02); Serial.println(" %");
     Serial.print("Temperatura 02:      "); Serial.print(Temp_02); Serial.println(" C");
 
-    Blynk.virtualWrite(V15, 0);                          // envia 0 para o led de sinalização
+    //Blynk.virtualWrite(V15, 0);                          // envia 0 para o led de sinalização
+    //#23C48E - Blynk Green 
+    Blynk.setProperty(V15, "color", "#64C366");
     Blynk.virtualWrite(V16, Umi_02);                     // Envia ao Blynk a informação
     Blynk.virtualWrite(V17, Temp_02);
     //Blynk.virtualWrite(V2, Umi_02);                    // V2 é do contador de RESET's - REMOVER PÓS TESTES
@@ -575,7 +584,9 @@ void MODBUS_Sensor(){
   // Gera os alarmes de push e no display no app - Blynk
   if (result_03 != 0) {Blynk.virtualWrite(V1, currentDay, "/", currentMonth, " ", currentHour, ":", currentMin, " FALHA NO SENSOR 03");
                      Blynk.logEvent("falha_de_sensor");
-                     Blynk.virtualWrite(V20, 255);        // envia 255 para o led de sinalização
+                     //Blynk.virtualWrite(V20, 255);        // envia 255 para o led de sinalização
+                     //#D3435C - Blynk RED 
+                     Blynk.setProperty(V20, "color", "#D03A20");
                      }
                      
   if (result_03 == Sensor_03.ku8MBSuccess){
@@ -587,7 +598,9 @@ void MODBUS_Sensor(){
     //Serial.print("Média Umidade 03:    "); Serial.print(average_Umi_03); Serial.println(" %");
     Serial.print("Temperatura 03:      "); Serial.print(Temp_03); Serial.println(" C");
 
-    Blynk.virtualWrite(V20, 0);                          // envia 0 para o led de sinalização
+    //Blynk.virtualWrite(V20, 0);                          // envia 0 para o led de sinalização
+    //#23C48E - Blynk Green 
+    Blynk.setProperty(V20, "color", "#64C366");
     Blynk.virtualWrite(V21, Umi_03);                     // Envia ao Blynk a informação
     Blynk.virtualWrite(V22, Temp_03);
     //Blynk.virtualWrite(V2, Umi_03);                    // V2 é do contador de RESET's - REMOVER PÓS TESTES
@@ -601,7 +614,9 @@ void MODBUS_Sensor(){
   // Gera os alarmes de push e no display no app - Blynk
   if (result_04 != 0) {Blynk.virtualWrite(V1, currentDay, "/", currentMonth, " ", currentHour, ":", currentMin, " FALHA NO SENSOR 04");
                      Blynk.logEvent("falha_de_sensor");
-                     Blynk.virtualWrite(V25, 255);        // envia 255 para o led de sinalização
+                     //Blynk.virtualWrite(V25, 255);        // envia 255 para o led de sinalização
+                     //#D3435C - Blynk RED 
+                     Blynk.setProperty(V25, "color", "#D03A20");
                      }
                      
   if (result_04 == Sensor_04.ku8MBSuccess){
@@ -613,11 +628,15 @@ void MODBUS_Sensor(){
     //Serial.print("Média Umidade 04:    "); Serial.print(average_Umi_04); Serial.println(" %");
     Serial.print("Temperatura 04:      "); Serial.print(Temp_04); Serial.println(" C");
 
-    Blynk.virtualWrite(V25, 0);                          // envia 0 para o led de sinalização
+    //Blynk.virtualWrite(V25, 0);                          // envia 0 para o led de sinalização
+    //#23C48E - Blynk Green 
+    Blynk.setProperty(V25, "color", "#64C366");
     Blynk.virtualWrite(V26, Umi_04);                     // Envia ao Blynk a informação
     Blynk.virtualWrite(V27, Temp_04);
     //Blynk.virtualWrite(V2, Umi_04);                    // V2 é do contador de RESET's - REMOVER PÓS TESTES
   } Serial.print("\n"); delay(2);
+
+  Blynk.virtualWrite(V4, 0);                             // desliga LED de sinalização no app
 
 }
 
@@ -635,9 +654,13 @@ void sendLogReset(){
     Serial.print("               BLYNK:  RODANDO COM SUCESSO!");
     esp_reset_reason_t r = esp_reset_reason();
     Serial.printf("\r\nReset reason %i - %s\r\n", r, resetReasonName(r));
-    Blynk.virtualWrite(V1, currentDay, "/", currentMonth, " ", currentHour, ":", currentMin, "",resetReasonName(r), " ",counterRST);
+    Blynk.virtualWrite(V1, currentDay, "/", currentMonth, " ", currentHour, ":", currentMin, "",resetReasonName(r), " FW:", BLYNK_FIRMWARE_VERSION, " /",counterRST);
     Blynk.virtualWrite(V2, counterRST);                        // envia para tela do app
-    //Blynk.syncVirtual (V40, V69, V89);                          // sincroniza datastream de agendamentos
+    //Blynk.syncVirtual (V40, V69, V89);                       // sincroniza datastream de agendamentos
+    Blynk.virtualWrite(V10, 255);                              // envia 0 para o led de sinalização
+    Blynk.virtualWrite(V15, 255);                              // envia 0 para o led de sinalização
+    Blynk.virtualWrite(V20, 255);                              // envia 0 para o led de sinalização
+    Blynk.virtualWrite(V25, 255);                              // envia 0 para o led de sinalização
     delay(250);
     MODBUS_Sensor();                                            // quando conectar lê sensor e envia os dados
     delay(250);
